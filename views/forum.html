@@ -1,0 +1,32 @@
+{% extends 'layout.html' %}
+	{% block content %}
+	</br>
+	</br>
+	</br>
+	<ul>
+		{% for article in articles %}
+			<h4>{{ article.title }}</h4>
+			<li>Author: {{ article.articleAuthor }}</li>
+			<li>Date: {{ Date(article.date) }}</li>
+			<li>Article:</li>
+			<p> {{ article.contents }}</p>
+			<hr>
+		{% endfor %}
+	</ul>
+	<form role="form" action="/forum" method="post">
+		 <div class="form-group">
+		   <label for="title">Title:</label>
+		   <input type="text" class="form-control" name="title" id="content">
+		 </div>
+		  <div class="form-group">
+		   <label for="author">Author:</label>
+		   <input type="text" class="form-control" name="articleAuthor" id="author">
+		 </div>
+		  <div class="form-group">
+		   <label for="comment">Comment:</label>
+		   <textarea class="form-control" rows="20" name="contents" id="comment"></textarea>
+		 </div>
+		 <button type="submit" class="btn btn-default">Submit</button>
+	</form>
+
+	{% endblock %}

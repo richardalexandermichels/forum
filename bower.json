@@ -1,0 +1,19 @@
+{
+  "name": "Forum",
+  "version": "0.0.0",
+  "homepage": "https://github.com/richardalexandermichels/make-promises",
+  "authors": [
+    "richardalexandermichels <richard.alexandermichels@gmail.com>"
+  ],
+  "moduleType": [
+    "node"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
