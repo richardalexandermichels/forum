@@ -1,8 +1,98 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-    	<link href="/bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    	<style>
+		#map-canvas{
+			height: calc(100vh - 50px);
+			width: 100vw;
+		}
+    	</style>
 	 	<title>Forum</title>
+    	<script src="/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+    	<link href="/bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+	 	<script src="/bower_components/jquery/dist/jquery.min.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDy6Vh2jix3G6n-8p9paiTc1ytnlMfZtWM&sensor=true"></script>
+    <script type="text/javascript">
+  //   	function initialize_gmaps() {
+		//     // initialize new google maps LatLng object
+		//     var myLatlng = new google.maps.LatLng(40.705189,-74.009209);
+		//     // set the map options hash
+		//     var mapOptions = {
+		//         center: myLatlng,
+		//         zoom: 16,
+		//         mapTypeId: google.maps.MapTypeId.ROADMAP
+		//     };
+		//     // get the maps div's HTML obj
+		//     var map_canvas_obj = document.getElementById("map-canvas");
+		//     // initialize a new Google Map with the options
+		//     var map = new google.maps.Map(map_canvas_obj, mapOptions);
+		//     // Add the marker to the map
+		//     var marker = new google.maps.Marker({
+		//         position: myLatlng,
+		//         title:"Hello World!"
+		//     });
+		//     // Add the marker to the map by calling setMap()
+		//     marker.setMap(map);
+		// }
+
+
+
+
+			var map;
+
+			function initialize() {
+			  var mapOptions = {
+			    zoom: 20
+			  };
+			  map = new google.maps.Map(document.getElementById('map-canvas'),
+			      mapOptions);
+
+			  // Try HTML5 geolocation
+			  if(navigator.geolocation) {
+			    navigator.geolocation.getCurrentPosition(function(position) {
+			      var pos = new google.maps.LatLng(position.coords.latitude,
+			                                       position.coords.longitude);
+
+			      var infowindow = new google.maps.InfoWindow({
+			        map: map,
+			        position: pos,
+			        content: 'Youre here bitch'
+			      });
+
+			      map.setCenter(pos);
+			    }, function() {
+			      handleNoGeolocation(true);
+			    });
+			  } else {
+			    // Browser doesn't support Geolocation
+			    handleNoGeolocation(false);
+			  }
+			}
+
+			function handleNoGeolocation(errorFlag) {
+			  if (errorFlag) {
+			    var content = 'Error: The Geolocation service failed.';
+			  } else {
+			    var content = 'Error: Your browser doesn\'t support geolocation.';
+			  }
+
+			  var options = {
+			    map: map,
+			    position: new google.maps.LatLng(60, 105),
+			    content: content
+			  };
+
+			  var infowindow = new google.maps.InfoWindow(options);
+			  map.setCenter(options.position);
+			}
+
+
+
+
+		$(document).ready(function() {
+		    initialize();
+		});
+    </script>
     </head>
     <body>
     <nav class="navbar navbar-inverse navbar-fixed-top">
@@ -26,7 +116,7 @@
       </div>
     </nav>
     {% block content %}{% endblock %}
-    	<script src="/bower_components/jquery/dist/jquery.min.js"></script>
-         <script src="/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+    	
+         
     </body>
  </html>

@@ -1,0 +1,22 @@
+{% extends 'layout.html' %}
+	{% block content %}
+	</br>
+	</br>
+	</br>
+	<form role="form" method="post">
+		 <div class="form-group">
+		   <label for="title">Title:</label>
+		   <input type="text" class="form-control" name="title" id="content" value="{{title}}">
+		 </div>
+		  <div class="form-group">
+		   <label for="author">Author:</label>
+		   <input type="text" class="form-control" name="articleAuthor" id="author" value="{{author}}">
+		 </div>
+		  <div class="form-group">
+		   <label for="comment">Comment:</label>
+		   <textarea class="form-control" rows="20" name="contents" id="comment">{{comment}}</textarea>
+		 </div>
+		 <button type="submit" class="btn btn-default">Submit</button>
+	</form>
+
+	{% endblock %}
